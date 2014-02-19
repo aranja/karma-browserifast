@@ -111,6 +111,7 @@ function karmaBrowserifast() {
     function preprocessor(config) {
         var bc = config.browserify || {};
         bc.files = bc.files || [];
+        bc.external = bc.external || [];
 
         return function (content, path, done) {
             log.info(formatPaths("Paths to browserify", bc.files));
@@ -119,6 +120,8 @@ function karmaBrowserifast() {
             var bundle = browserify({ entries: paths });
             watch.files(files);
             watch.bundle(bundle);
+            
+            bc.external.forEach(function(e) { bundle.external(e); });
 
             log.debug("Browserify bundle");
             var start = new Date();
