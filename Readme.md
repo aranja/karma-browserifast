@@ -100,6 +100,15 @@ browserify: {
 
 Adds sourcemaps to your Browserify bundle.
 
+```js
+browserify: {
+    external: ['jquery']
+}
+```
+
+Specifies modules which can be loaded externally, f.ex. from another browserify bundle
+loaded using karma's built-in `files` directive.
+
 ## File watching
 
 When you move files from Karma's list of files to the browserify list, you also
